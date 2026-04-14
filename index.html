@@ -1,92 +1,126 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GUI</title>
     <style>
+        :root {
+            --text-color: #f5f5f5;
+            --font-main: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            --font-size: 14px;
+        }
+
         * {
             box-sizing: border-box;
         }
 
-        body {
+        body, html {
             margin: 0;
-            font-family: Arial;
-            font-size: 17px;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: #000;
+            color: var(--text-color);
+            font-family: var(--font-main);
+            -webkit-font-smoothing: antialiased;
+            font-size: var(--font-size);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
-        #myVideo {
+        .bg-video {
             position: fixed;
             right: 0;
             bottom: 0;
             min-width: 100%;
             min-height: 100%;
+            z-index: 0;
         }
 
         .content {
-            font-family: Helvetica;
-            color: white;
             position: fixed;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0);
-            color: #f1f1f1;
-            width: 100%;
-            padding: 20px;
+            bottom: 4vw;
+            left: 4vw;
+            z-index: 10;
+            max-width: 90vw;
+        }
+
+        p {
+            margin: 0 0 16px 0;
+            font-size: var(--font-size);
+            line-height: 1.5;
+        }
+
+        .qr-code {
+            width: 10vw;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+            margin-top: 24px;
         }
 
         a {
-            font-family: Helvetica;
-            color: white;
-            //text-decoration: none; /* no underline */
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: var(--font-size);
         }
 
-        .center {
-            margin: 0 auto;
-            width: 400px;
+        .c-line-link {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+            padding-bottom: 4px;
+            position: relative;
         }
-
-        #myBtn {
-            width: 200px;
-            font-size: 18px;
-            padding: 10px;
-            border: none;
-            background: #000;
-            color: #fff;
-            cursor: pointer;
+        
+        .c-line-link::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: var(--text-color);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transform: scaleX(1);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        #myBtn:hover {
-            background: #ddd;
-            color: black;
-        }
-
-        img {
-            width: 25%;
+        
+        .c-line-link:hover::after {
+            transform: scaleX(0);
+            transform-origin: right;
         }
     </style>
 </head>
-
 <body>
 
-    <video autoplay muted loop poster="01.png" id="myVideo">
+    <video autoplay muted loop playsinline poster="01.png" class="bg-video">
         <source src="S8.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
     </video>
 
     <div class="content">
-        <img src="guivustoqr.png">
+        <img src="guivustoqr.png" alt="QR Code" class="qr-code">
         <p>GUI</p>
         <p>art / electrical / network / software</p>
-        <p> <a href="http://www.instagram.com/gui.shade">Instagram</a>
-            <a href="http://t.me/guishade">Telegram</a>
-            <a href="https://matrix.to/#/@gui.shade:matrix.org">Matrix</a>
-            <a href="http://github.com/guishade">Github</a>
-            <a href="http://www.youtube.com/user/GRAPHICUSERINTERFACE">Youtube</a>
-            <a href="https://photos.app.goo.gl/5S1XneABbm4ScpSu9">SOME WORK</a>
-            <a href="mailto:gui.shade@gmail.com">guishade@gmail.com</a>
-        </p>
+        
+        <div class="links">
+            <a href="http://www.instagram.com/gui.shade" class="c-line-link" target="_blank">Instagram</a>
+            <a href="http://t.me/guishade" class="c-line-link" target="_blank">Telegram</a>
+            <a href="https://matrix.to/#/@gui.shade:matrix.org" class="c-line-link" target="_blank">Matrix</a>
+            <a href="http://github.com/guishade" class="c-line-link" target="_blank">Github</a>
+            <a href="http://www.youtube.com/user/GRAPHICUSERINTERFACE" class="c-line-link" target="_blank">Youtube</a>
+            <a href="https://photos.app.goo.gl/5S1XneABbm4ScpSu9" class="c-line-link" target="_blank">Some Work</a>
+            <a href="mailto:gui.shade@gmail.com" class="c-line-link">guishade@gmail.com</a>
+        </div>
     </div>
 
-
 </body>
-
 </html>
